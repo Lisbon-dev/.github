@@ -1,8 +1,7 @@
 name: '✅ General Task'
-about: For a standard, defined piece of work.
+description: For a standard, defined piece of work.
 title: "[TASK] - "
 labels: 'task'
-assignees: ''
 body:
   - type: textarea
     id: description

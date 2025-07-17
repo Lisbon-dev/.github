@@ -1,8 +1,7 @@
 name: '🧭 Strategy & Research'
-about: For project planning, research tasks, and strategic decisions.
+description: For project planning, research tasks, and strategic decisions.
 title: "[STRATEGY] - "
 labels: 'strategy'
-assignees: ''
 body:
   - type: textarea
     id: goal

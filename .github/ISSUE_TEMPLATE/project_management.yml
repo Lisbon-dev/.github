@@ -1,8 +1,7 @@
 name: '💼 Project Management Task'
-about: For administrative, client communication, and other non-development tasks.
+description: For administrative, client communication, and other non-development tasks.
 title: "[PM] - "
 labels: 'project-management'
-assignees: ''
 body:
   - type: textarea
     id: task-description

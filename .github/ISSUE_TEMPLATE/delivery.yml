@@ -1,8 +1,7 @@
 name: '🚀 Delivery / Deployment'
-about: For deploying changes to a live or staging environment.
+description: For deploying changes to a live or staging environment.
 title: "[DELIVERY] - "
 labels: 'deployment'
-assignees: ''
 body:
   - type: textarea
     id: whats-deployed

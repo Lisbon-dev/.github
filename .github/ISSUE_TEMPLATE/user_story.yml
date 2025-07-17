@@ -2,7 +2,6 @@ name: "User Story"
 description: "A small, self-contained feature from the user's perspective."
 title: "[STORY] - "
 labels: ["enhancement"]
-assignees: ''
 body:
   - type: input
     id: user-story

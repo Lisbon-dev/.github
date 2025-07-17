@@ -1,8 +1,7 @@
 name: '📈 Improvement'
-about: Suggest an improvement to an existing feature or process.
+description: Suggest an improvement to an existing feature or process.
 title: "[IMPROVE] - "
 labels: 'improvement'
-assignees: ''
 body:
   - type: textarea
     id: area
