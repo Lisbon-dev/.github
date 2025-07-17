@@ -1,0 +1,36 @@
+name: "Epic"
+description: "A large user-facing feature or initiative."
+title: "[EPIC] - "
+labels: ["epic"]
+assignees: ''
+body:
+  - type: textarea
+    id: goal
+    attributes:
+      label: "Business Goal or Objective"
+      description: "What is the high-level objective of this epic? What user or business problem does it solve?"
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: "Scope & Requirements"
+      description: "Outline the boundaries of this epic. What is in scope and, just as importantly, what is out of scope?"
+      placeholder: |
+        - In Scope: ...
+        - Out of Scope: ...
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: "Acceptance Criteria"
+      description: "Provide a checklist of high-level criteria that must be met for this epic to be considered complete."
+      placeholder: |
+        - [ ] Criteria 1
+        - [ ] Criteria 2
+  - type: textarea
+    id: related-issues
+    attributes:
+      label: "Child Issues (Stories & Tasks)"
+      description: "As stories and tasks are created for this epic, link them here."
+      value: |
+        - #issue_number

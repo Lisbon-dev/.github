@@ -1,0 +1,39 @@
+name: '🧭 Strategy & Research'
+about: For project planning, research tasks, and strategic decisions.
+title: "[STRATEGY] - "
+labels: 'strategy'
+assignees: ''
+body:
+  - type: textarea
+    id: goal
+    attributes:
+      label: "What is the strategic question or goal?"
+      description: "(e.g., \"Determine the best analytics provider for this project,\" \"Define the SEO keyword strategy for the blog,\" \"Plan the project roadmap for Q4\")."
+    validations:
+      required: true
+  - type: textarea
+    id: key-questions
+    attributes:
+      label: "Key Questions to Answer"
+      placeholder: |
+        - [ ] Question 1?
+        - [ ] Question 2?
+        - [ ] Question 3?
+  - type: dropdown
+    id: deliverable
+    attributes:
+      label: "Expected Deliverable"
+      description: "What is the final output of this task?"
+      options:
+        - "A written summary document"
+        - "A decision recorded in this issue"
+        - "A presentation"
+        - "Other"
+    validations:
+      required: true
+  - type: input
+    id: deadline
+    attributes:
+      label: "Deadline"
+      description: "When does this decision need to be made or research completed by?"
+      placeholder: "YYYY-MM-DD"

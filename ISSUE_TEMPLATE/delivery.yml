@@ -1,0 +1,52 @@
+name: '🚀 Delivery / Deployment'
+about: For deploying changes to a live or staging environment.
+title: "[DELIVERY] - "
+labels: 'deployment'
+assignees: ''
+body:
+  - type: textarea
+    id: whats-deployed
+    attributes:
+      label: "What is being deployed?"
+      description: "A brief summary of the changes being released in this deployment. This can be a link to a pull request or a list of completed issue numbers (e.g., \"Deploys feature #42 and fixes bug #51\")."
+    validations:
+      required: true
+  - type: dropdown
+    id: environment
+    attributes:
+      label: "Target Environment"
+      options:
+        - "Staging / Preview"
+        - "Production / Live"
+    validations:
+      required: true
+  - type: checkboxes
+    id: pre-deploy-checklist
+    attributes:
+      label: "Pre-Deployment Checklist"
+      description: "This checklist must be completed **before** starting the deployment."
+      options:
+        - label: "All related pull requests have been reviewed, approved, and merged."
+          required: true
+        - label: "The `main` (or `develop`) branch is up to date with the latest changes."
+          required: true
+        - label: "All environment variables have been confirmed and are in place."
+          required: true
+        - label: "A database backup has been created (if applicable)."
+          required: false
+        - label: "The client has been notified of the scheduled maintenance/deployment window."
+          required: false
+  - type: checkboxes
+    id: post-deploy-checklist
+    attributes:
+      label: "Post-Deployment Checklist"
+      description: "This checklist must be completed **after** a successful deployment."
+      options:
+        - label: "Deployment script/pipeline completed without errors."
+          required: true
+        - label: "Perform a smoke test on key pages and functionality (e.g., Homepage, Contact Form, Checkout Process)."
+          required: true
+        - label: "Clear all relevant caches (e.g., Cloudflare, Vercel, server-side)."
+          required: true
+        - label: "Notify the client that the deployment is complete and the site is ready for their review."
+          required: true

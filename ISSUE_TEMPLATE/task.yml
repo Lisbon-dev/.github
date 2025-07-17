@@ -1,0 +1,37 @@
+name: '✅ General Task'
+about: For a standard, defined piece of work.
+title: "[TASK] - "
+labels: 'task'
+assignees: ''
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: "What needs to be done?"
+      description: "A clear and concise description of the task."
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: "Acceptance Criteria"
+      description: "A checklist of what must be true for this task to be considered complete. This ensures we both agree on what \"done\" means."
+      placeholder: |
+        - [ ] Criteria 1
+        - [ ] Criteria 2
+        - [ ] Criteria 3
+    validations:
+      required: true
+  - type: textarea
+    id: links
+    attributes:
+      label: "Relevant Files or Links"
+      description: |
+        - Link to design mockups in Figma
+        - Link to relevant documentation
+        - Path to specific code files (e.g., `/src/components/Navbar.js`)
+  - type: textarea
+    id: notes
+    attributes:
+      label: "Additional Notes"
+      description: "Is there anything else we should know? Any potential blockers or dependencies?"

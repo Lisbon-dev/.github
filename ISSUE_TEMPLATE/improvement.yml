@@ -1,0 +1,34 @@
+name: '📈 Improvement'
+about: Suggest an improvement to an existing feature or process.
+title: "[IMPROVE] - "
+labels: 'improvement'
+assignees: ''
+body:
+  - type: textarea
+    id: area
+    attributes:
+      label: "What part of the project should be improved?"
+      description: "Please be specific (e.g., \"The image loading on the homepage,\" \"The mobile menu navigation,\" \"The build process script\")."
+    validations:
+      required: true
+  - type: textarea
+    id: current-behavior
+    attributes:
+      label: "What is the current behavior?"
+      description: "A clear description of how it works right now."
+    validations:
+      required: true
+  - type: textarea
+    id: proposed-improvement
+    attributes:
+      label: "What is the proposed improvement?"
+      description: "A clear description of the change you're suggesting."
+    validations:
+      required: true
+  - type: textarea
+    id: value
+    attributes:
+      label: "Why is this improvement valuable?"
+      description: "What is the benefit? (e.g., \"Faster page load by 30%,\" \"Better user experience for mobile users,\" \"Reduces build time by 1 minute\")."
+    validations:
+      required: true

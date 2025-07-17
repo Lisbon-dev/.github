@@ -1,0 +1,35 @@
+name: '🎨 Design Task'
+about: For UI/UX design implementation, tweaks, or reviews.
+title: "[DESIGN] - "
+labels: 'design'
+assignees: ''
+body:
+  - type: textarea
+    id: goal
+    attributes:
+      label: "What is the design goal?"
+      description: "Describe the objective of this design task (e.g., \"Implement the new hero section for the about page,\" \"Adjust button padding for mobile,\" \"Create a responsive version of the footer\")."
+    validations:
+      required: true
+  - type: input
+    id: design-link
+    attributes:
+      label: "🔗 Figma/Sketch/Canva Link"
+      description: "**This is required.** Please provide a direct link to the specific frame, component, or page."
+      placeholder: "Link to design file here"
+    validations:
+      required: true
+  - type: checkboxes
+    id: acceptance-criteria
+    attributes:
+      label: "Visual Acceptance Criteria"
+      options:
+        - label: "Does it match the design pixel-for-pixel (or as close as is reasonable)?"
+        - label: "Is it fully responsive across all target breakpoints (mobile, tablet, desktop)?"
+        - label: "Have all assets (images, icons) been correctly exported and optimized?"
+        - label: "Does the design work correctly in light/dark mode (if applicable)?"
+  - type: textarea
+    id: questions
+    attributes:
+      label: "Questions or Ambiguities"
+      description: "Note any areas where the design may be unclear or requires a decision."
