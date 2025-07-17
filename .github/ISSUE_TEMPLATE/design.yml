@@ -2,6 +2,7 @@ name: '🎨 Design Task'
 description: For UI/UX design implementation, tweaks, or reviews.
 title: "[DESIGN] - "
 labels: 'design'
+assignees: "RenatoL"
 body:
   - type: textarea
     id: goal
