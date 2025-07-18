@@ -1,0 +1,70 @@
+name: Populate PR Form
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  populate:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      issues: read
+      contents: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Populate PR title and body
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const { owner, repo } = context.repo;
+            const pr = context.payload.pull_request;
+            let newTitle = pr.title;
+
+            // 1. Generate body from commit messages
+            const util = require('util');
+            const exec = util.promisify(require('child_process').exec);
+            const { stdout: log } = await exec(`git log ${{ pr.base.sha }}..${{ pr.head.sha }} --pretty=format:"- %s"`);
+            const newBody = `## Commits\n\n${log}`;
+
+            // 2. Attempt to derive title from the source branch name
+            // This handles workflows where a feature branch is merged to a 'preview' branch before the PR is opened.
+            let sourceBranch = pr.head.ref;
+            try {
+              const { stdout: lastCommitMessage } = await exec(`git log -1 --pretty=%B ${{ pr.head.sha }}`);
+              const mergeMatch = lastCommitMessage.match(/Merge branch '([^']+)'/);
+              if (mergeMatch && mergeMatch[1]) {
+                sourceBranch = mergeMatch[1];
+              }
+            } catch (error) {
+               console.log(`Could not get last commit message: ${error.message}`);
+            }
+
+            // Assumes branch name format like 'feature/123-name'
+            const issueMatch = sourceBranch.match(/(?:\/|^)(\d+)-/);
+            if (issueMatch && issueMatch[1]) {
+              const issueNumber = issueMatch[1];
+              try {
+                const { data: issue } = await github.rest.issues.get({
+                  owner,
+                  repo,
+                  issue_number: issueNumber,
+                });
+                newTitle = issue.title;
+              } catch (error) {
+                console.log(`Could not find issue #${issueNumber}. Using original PR title. Error: ${error.message}`);
+              }
+            }
+
+            // 3. Update the Pull Request
+            await github.rest.pulls.update({
+              owner,
+              repo,
+              pull_number: pr.number,
+              title: newTitle,
+              body: newBody,
+            });

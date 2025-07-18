@@ -1,0 +1,39 @@
+name: Create PR on push to preview
+on:
+  push:
+    branches:
+      - preview
+
+jobs:
+  create_pr:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check for existing PR
+        id: check_pr
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if gh pr list --head preview --base main --state open | grep -q "merging preview into main"; then
+            echo "A PR from preview to main already exists."
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "No existing PR found. A new one will be created."
+            echo "exists=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create Pull Request if one does not exist
+        if: steps.check_pr.outputs.exists == 'false'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh pr create \
+            --base main \
+            --head preview \
+            --title "merging preview into main" \
+            --body "This PR was automatically created to merge changes from the 'preview' branch into 'main'."
