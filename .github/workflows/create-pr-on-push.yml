@@ -17,7 +17,7 @@ jobs:
       - name: Check for existing PR
         id: check_pr
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
         run: |
           if gh pr list --head preview --base main --state open | grep -q "merging preview into main"; then
             echo "A PR from preview to main already exists."
@@ -30,7 +30,7 @@ jobs:
       - name: Create Pull Request if one does not exist
         if: steps.check_pr.outputs.exists == 'false'
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
         run: |
           gh pr create \
             --base main \
